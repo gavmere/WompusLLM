@@ -1,0 +1,323 @@
+DISCORD_TOKEN: "" # Discord bot token
+OPENROUTER_API_KEY: "" # OpenRouter API key
+SYSTEM_PROMPT: "You are a helpful assistant that can answer questions and help with tasks. Be concise and to the point while being understanding and friendly." # System prompt for the bot
+DEFAULT_MODEL: "google/gemini-2.0-flash-001" # Default model for the bot, also uses this model to rename channels automatically
+N_MESSAGES_CHANNEL_NAME_UPDATE: -1 # Number of messages the model sees to use for updating the channel name, -1 mean passes entire conversation into model
+N_CHANNEL_NAME_UPDATE: 5 # Number of messages until the channel name is updated
+CHAT_COMPLETION: 
+  MAX_TOKENS: 1000 # Maximum number of tokens for the bot to generate, Max embed is 4096 Characters, and 1 Token ~ 4 Characters
+  TEMPERATURE: 1.0 # Temperature for the bot to generate, 0.0 is the most deterministic, 1.0 is the most random
+  TOP_P: 1.0 # Top P for the bot to generate, 0.0 is the most deterministic, 1.0 is the most random
+  FREQUENCY_PENALTY: 0.0 # Frequency penalty for the bot to generate, 0.0 is the most deterministic, 1.0 is the most random
+  PRESENCE_PENALTY: 0.0 # Presence penalty for the bot to generate, 0.0 is the most deterministic, 1.0 is the most random
+LOGGING:
+  ENABLED: true # Whether to enable logging
+  TO_CONSOLE: true # Whether to log to console
+  LEVEL: "INFO" # Logging level
+  FILE: "wompus.log" # Logging file
+  MAX_SIZE: 10000000 # Maximum size of the logging file in bytes
+
+UI:
+  SELECTION_EMOJIS: # Emojis used for model selection in Discord
+    - "1️⃣"
+    - "2️⃣" 
+    - "3️⃣"
+    - "4️⃣"
+    - "5️⃣"
+    - "6️⃣"
+    - "7️⃣"
+    - "8️⃣"
+    - "9️⃣"
+    - "🔟"
+    - "🇦"
+    - "🇧"
+    - "🇨"
+    - "🇩"
+    - "🇪"
+    - "🇫"
+    - "🇬"
+    - "🇭"
+    - "🇮"
+    - "🇯"
+    - "🇰"
+    - "🇱"
+    - "🇲"
+    - "🇳"
+    - "🇴"
+    - "🇵"
+    - "🇶"
+    - "🇷"
+    - "🇸"
+    - "🇹"
+    - "🇺"
+    - "🇻"
+    - "🇼"
+    - "🇽"
+    - "🇾"
+    - "🇿"
+
+# This next section is the model data, it is a list of providers, and then a list of models for that provider.
+# It is structured as follows:
+# - SERIES:
+#   - PROVIDER:
+#     - NAME: "MODEL_NAME"
+#       DESCRIPTION: "MODEL_DESCRIPTION"
+#       MODEL_ID: "MODEL_ID"
+#       INPUT_PRICE: "INPUT_PRICE"
+#       OUTPUT_PRICE: "OUTPUT_PRICE"
+#       CONTEXT_LIMIT: "CONTEXT_LIMIT"
+#       ENABLE_IMAGES: "ENABLE_IMAGES"
+# The context limit is the maximum number of tokens that the model can process.
+# The input price is the price per 1M tokens that the model costs.
+# The output price is the price per 1M tokens that the model generates.
+# The model id is the id of the model in the provider's API.
+# The model name is the name of the model.
+# The model description is a short description of the model.
+# The enable images is a boolean value that determines if the model can use images as input. This only applies to multimodal models that support images parameter can also be used to disable images for the model.
+# Find models here: https://openrouter.ai/models
+MODEL_DATA:
+  SERIES:
+    - OPENAI:
+      - NAME: "gpt-4o-mini"
+        DESCRIPTION: "Cost-effective and fast model, good for everyday tasks and quick responses"
+        MODEL_ID: "openai/gpt-4o-mini"
+        INPUT_PRICE: 0.15
+        OUTPUT_PRICE: 0.60
+        CONTEXT_LIMIT: 128000
+        ENABLE_IMAGES: true
+      - NAME: "gpt-4o"
+        DESCRIPTION: "Most capable GPT-4 model for complex reasoning and creative tasks"
+        MODEL_ID: "openai/gpt-4o"
+        INPUT_PRICE: 2.50
+        OUTPUT_PRICE: 10.00
+        CONTEXT_LIMIT: 128000
+        ENABLE_IMAGES: true
+      - NAME: "gpt-4.1"
+        DESCRIPTION: "Enhanced GPT-4 with improved reasoning and large context window"
+        MODEL_ID: "openai/gpt-4.1"
+        INPUT_PRICE: 2.00
+        OUTPUT_PRICE: 8.00
+        CONTEXT_LIMIT: 1_050_000
+        ENABLE_IMAGES: true
+      - NAME: "o1-mini"
+        DESCRIPTION: "Reasoning model optimized for math, coding, and analytical tasks"
+        MODEL_ID: "openai/o1-mini"
+        INPUT_PRICE: 1.10
+        OUTPUT_PRICE: 4.40
+        CONTEXT_LIMIT: 128000
+        ENABLE_IMAGES: true
+      - NAME: "o3-mini-high"
+        DESCRIPTION: "High-performance reasoning model for complex problem-solving"
+        MODEL_ID: "openai/o3-mini-high"
+        INPUT_PRICE: 1.10
+        OUTPUT_PRICE: 4.40
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+      - NAME: "o3-mini"
+        DESCRIPTION: "Advanced reasoning model for thoughtful analysis and planning"
+        MODEL_ID: "openai/o3-mini"
+        INPUT_PRICE: 1.10
+        OUTPUT_PRICE: 4.40
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+    - ANTHROPIC:
+      - NAME: "claude-opus-4"
+        DESCRIPTION: "Most intelligent model for the most complex tasks with highest reasoning capability"
+        MODEL_ID: "anthropic/claude-opus-4"
+        INPUT_PRICE: 15.00
+        OUTPUT_PRICE: 75.00
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+      - NAME: "claude-sonnet-4"
+        DESCRIPTION: "High-performance model with optimal balance of intelligence, cost, and speed"
+        MODEL_ID: "anthropic/claude-sonnet-4"
+        INPUT_PRICE: 3.00
+        OUTPUT_PRICE: 15.00
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+      - NAME: "claude-3.7-sonnet:thinking"
+        DESCRIPTION: "High-performance model with extended thinking capabilities for complex reasoning"
+        MODEL_ID: "anthropic/claude-3.7-sonnet:thinking"
+        INPUT_PRICE: 3.00
+        OUTPUT_PRICE: 15.00
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+      - NAME: "claude-3.7-sonnet"
+        DESCRIPTION: "High-performance model with enhanced reasoning and analysis capabilities"
+        MODEL_ID: "anthropic/claude-3.7-sonnet"
+        INPUT_PRICE: 3.00
+        OUTPUT_PRICE: 15.00
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+      - NAME: "claude-3.5-haiku"
+        DESCRIPTION: "Fastest and most cost-effective model for near-instant responsiveness"
+        MODEL_ID: "anthropic/claude-3.5-haiku"
+        INPUT_PRICE: 0.80
+        OUTPUT_PRICE: 4.00
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+      - NAME: "claude-3.5-sonnet"
+        DESCRIPTION: "Excellent for coding, data science, visual processing, and agentic tasks"
+        MODEL_ID: "anthropic/claude-3.5-sonnet"
+        INPUT_PRICE: 3.00
+        OUTPUT_PRICE: 15.00
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+      - NAME: "claude-3-opus"
+        DESCRIPTION: "Previous generation powerful model for highly complex tasks"
+        MODEL_ID: "anthropic/claude-3-opus"
+        INPUT_PRICE: 15.00
+        OUTPUT_PRICE: 75.00
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+      - NAME: "claude-3-haiku"
+        DESCRIPTION: "Previous generation fast and compact model for quick responses"
+        MODEL_ID: "anthropic/claude-3-haiku"
+        INPUT_PRICE: 0.25
+        OUTPUT_PRICE: 1.25
+        CONTEXT_LIMIT: 200_000
+        ENABLE_IMAGES: true
+    - GOOGLE:
+      - NAME: "gemini-2.5-pro-preview"
+        DESCRIPTION: "Google's most advanced AI model for complex reasoning, coding, and scientific tasks"
+        MODEL_ID: "google/gemini-2.5-pro-preview"
+        INPUT_PRICE: 1.25
+        OUTPUT_PRICE: 10.00
+        CONTEXT_LIMIT: 1_048_576
+        ENABLE_IMAGES: true
+      - NAME: "gemini-2.5-flash-preview-05-20"
+        DESCRIPTION: "Advanced reasoning model with built-in thinking capabilities for accuracy"
+        MODEL_ID: "google/gemini-2.5-flash-preview-05-20"
+        INPUT_PRICE: 0.15
+        OUTPUT_PRICE: 3.50
+        CONTEXT_LIMIT: 1_048_576
+        ENABLE_IMAGES: true
+      - NAME: "gemini-2.5-flash-preview-05-20:thinking"
+        DESCRIPTION: "Advanced reasoning model with extended thinking for complex problem-solving"
+        MODEL_ID: "google/gemini-2.5-flash-preview-05-20:thinking"
+        INPUT_PRICE: 0.15
+        OUTPUT_PRICE: 3.50
+        CONTEXT_LIMIT: 1_048_576
+        ENABLE_IMAGES: true
+      - NAME: "gemini-2.0-flash-001"
+        DESCRIPTION: "Fast and efficient model with enhanced multimodal understanding and coding"
+        MODEL_ID: "google/gemini-2.0-flash-001"
+        INPUT_PRICE: 0.10
+        OUTPUT_PRICE: 0.40
+        CONTEXT_LIMIT: 1_000_000
+        ENABLE_IMAGES: true
+      - NAME: "gemini-2.0-flash-lite-001"
+        DESCRIPTION: "Ultra-fast model optimized for speed with economical pricing"
+        MODEL_ID: "google/gemini-2.0-flash-lite-001"
+        INPUT_PRICE: 0.075
+        OUTPUT_PRICE: 0.30
+        CONTEXT_LIMIT: 1_048_576
+        ENABLE_IMAGES: true
+      - NAME: "gemini-1.5-pro"
+        DESCRIPTION: "Versatile multimodal model for language tasks with large context window"
+        MODEL_ID: "google/gemini-1.5-pro"
+        INPUT_PRICE: 1.25
+        OUTPUT_PRICE: 5.00
+        CONTEXT_LIMIT: 2_000_000
+        ENABLE_IMAGES: true
+    - DEEPSEEK:
+      - NAME: "deepseek-r1-0528"
+        DESCRIPTION: "Flagship reasoning model with open reasoning tokens, performance on par with o1"
+        MODEL_ID: "deepseek/deepseek-r1-0528"
+        INPUT_PRICE: 0.55
+        OUTPUT_PRICE: 2.19
+        CONTEXT_LIMIT: 128_000
+        ENABLE_IMAGES: false
+      - NAME: "deepseek-v3-0324"
+        DESCRIPTION: "Advanced chat model with excellent performance across diverse tasks"
+        MODEL_ID: "deepseek/deepseek-v3-0324"
+        INPUT_PRICE: 0.27
+        OUTPUT_PRICE: 1.10
+        CONTEXT_LIMIT: 131_000
+        ENABLE_IMAGES: false
+    - MISTRAL:
+      - NAME: "mistral-medium-3"
+        DESCRIPTION: "High-performance enterprise model with frontier capabilities at reduced cost"
+        MODEL_ID: "mistralai/mistral-medium-3"
+        INPUT_PRICE: 0.40
+        OUTPUT_PRICE: 2.00
+        CONTEXT_LIMIT: 131_000
+        ENABLE_IMAGES: false
+      - NAME: "mistral-small-3.1-24b"
+        DESCRIPTION: "Advanced 24B model with multimodal capabilities and efficient performance"
+        MODEL_ID: "mistralai/mistral-small-3.1-24b"
+        INPUT_PRICE: 0.10
+        OUTPUT_PRICE: 0.30
+        CONTEXT_LIMIT: 128_000
+        ENABLE_IMAGES: true
+      - NAME: "devstral-small"
+        DESCRIPTION: "Specialized coding model optimized for software engineering and agent workflows"
+        MODEL_ID: "mistralai/devstral-small"
+        INPUT_PRICE: 0.10
+        OUTPUT_PRICE: 0.30
+        CONTEXT_LIMIT: 131_000
+        ENABLE_IMAGES: false
+      - NAME: "codestral-2501"
+        DESCRIPTION: "Advanced coding model for low-latency code completion and generation"
+        MODEL_ID: "mistralai/codestral-2501"
+        INPUT_PRICE: 0.30
+        OUTPUT_PRICE: 0.90
+        CONTEXT_LIMIT: 256_000
+        ENABLE_IMAGES: false
+      - NAME: "ministral-8b"
+        DESCRIPTION: "Efficient 8B model optimized for edge computing and low-latency applications"
+        MODEL_ID: "mistralai/ministral-8b"
+        INPUT_PRICE: 0.10
+        OUTPUT_PRICE: 0.10
+        CONTEXT_LIMIT: 128_000
+        ENABLE_IMAGES: false
+      - NAME: "mistral-large-2411"
+        DESCRIPTION: "Flagship model with improved reasoning and function calling capabilities"
+        MODEL_ID: "mistralai/mistral-large-2411"
+        INPUT_PRICE: 2.00
+        OUTPUT_PRICE: 6.00
+        CONTEXT_LIMIT: 128_000
+        ENABLE_IMAGES: false
+    - META:
+      - NAME: "llama-4-maverick"
+        DESCRIPTION: "Advanced multimodal MoE model with 17B active parameters and vision capabilities"
+        MODEL_ID: "meta-llama/llama-4-maverick"
+        INPUT_PRICE: 0.15
+        OUTPUT_PRICE: 0.60
+        CONTEXT_LIMIT: 1_048_576
+        ENABLE_IMAGES: true
+      - NAME: "llama-4-scout"
+        DESCRIPTION: "Efficient MoE model with native multimodal input and 10M token context"
+        MODEL_ID: "meta-llama/llama-4-scout"
+        INPUT_PRICE: 0.08
+        OUTPUT_PRICE: 0.30
+        CONTEXT_LIMIT: 10_000_000
+        ENABLE_IMAGES: true
+      - NAME: "llama-3.3-70b-instruct"
+        DESCRIPTION: "Multilingual large model optimized for dialogue and complex reasoning"
+        MODEL_ID: "meta-llama/llama-3.3-70b-instruct"
+        INPUT_PRICE: 0.07
+        OUTPUT_PRICE: 0.25
+        CONTEXT_LIMIT: 131_000
+        ENABLE_IMAGES: false
+      - NAME: "llama-3.2-90b-vision-instruct"
+        DESCRIPTION: "Top-tier multimodal model for advanced visual reasoning and analysis"
+        MODEL_ID: "meta-llama/llama-3.2-90b-vision-instruct"
+        INPUT_PRICE: 1.20
+        OUTPUT_PRICE: 1.20
+        CONTEXT_LIMIT: 131_000
+        ENABLE_IMAGES: true
+      - NAME: "llama-3.1-405b-instruct"
+        DESCRIPTION: "Massive 405B model with leading performance across complex tasks"
+        MODEL_ID: "meta-llama/llama-3.1-405b-instruct"
+        INPUT_PRICE: 0.80
+        OUTPUT_PRICE: 0.80
+        CONTEXT_LIMIT: 131_000
+        ENABLE_IMAGES: false
+      - NAME: "llama-3.1-70b-instruct"
+        DESCRIPTION: "High-quality dialogue model optimized for conversational AI applications"
+        MODEL_ID: "meta-llama/llama-3.1-70b-instruct"
+        INPUT_PRICE: 0.10
+        OUTPUT_PRICE: 0.28
+        CONTEXT_LIMIT: 131_000
+        ENABLE_IMAGES: false
